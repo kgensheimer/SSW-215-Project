@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>Test Resource</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 
   <body>
 
-    <!-- Navigation -->
+   <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">Test Resource</a>
@@ -56,14 +56,13 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/contact-bg.jpg')">
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>Contact Me</h1>
-              <span class="subheading">Have questions? I have answers.</span>
+              <h1>Submission Form</h1>
             </div>
           </div>
         </div>
@@ -74,49 +73,57 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
-          <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-          <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-          <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+          <p>Upload exams and quizzes here. Please make sure to omit any names, signatures, or any other identifying information from the file.</p>
+          <!-- Submission Form -->
           <form name="sentMessage" id="contactForm" novalidate>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <label>Name</label>
-                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                <label>Class Name</label>
+                <input type="text" class="form-control" placeholder="Class Name (eg. SSW 215)" id="className" required data-validation-required-message="Please enter the class name.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <label>Email Address</label>
-                <input type="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group col-xs-12 floating-label-form-group controls">
-                <label>Phone Number</label>
-                <input type="tel" class="form-control" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
+                <label>Description</label>
+                <input type="text" class="form-control" placeholder="Description (eg. Exam 3)" id="description" required data-validation-required-message="Please enter a description.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
-                <label>Message</label>
-                <textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                <label>Semester</label>
+                <input type="text" class="form-control" placeholder="Semester (eg. Spring 2018)" id="semster" required data-validation-required-message="Please enter the semester.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Notes</label>
+                <textarea rows="3" class="form-control" placeholder="Notes" id="message" required data-validation-required-message="Please enter additional notes."></textarea>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <br>
+            <!-- File Submission Input -->
+            <div class="form-group">
+                <label for="formControlFile">Browse for File:</label>
+                <input type="file" class="form-control-file" id="formControlFile">
+              </div>
+            <br>
             <div id="success"></div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+              <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-
+    
+    
+    
+    
+    
     <hr>
 
     <!-- Footer -->
@@ -143,10 +150,6 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/clean-blog.min.js"></script>
