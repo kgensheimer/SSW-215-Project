@@ -11,7 +11,8 @@
 
 #mainNav .search-container{
   float: right;
-  font-size: 12px
+  font-size: 12px;
+  
 }
 
 #mainNav .search-container button:hover {
