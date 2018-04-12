@@ -18,6 +18,7 @@ app.use("/", express.static(path.join(__dirname + 'index')));
 
 app.post('/send-email', function (req, res) {
     console.log(req.body);
+    console.log("here");
     let transporter = nodeMailer.createTransport({
         service:'gmail',
         auth: {
@@ -38,7 +39,7 @@ app.post('/send-email', function (req, res) {
             return console.log(error);
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
-        res.sendFile(path.join(__dirname + '/static/landing-page/index.html'));
+        res.sendFile(path.join(__dirname + '/contact.html'));
     });
 });
 
