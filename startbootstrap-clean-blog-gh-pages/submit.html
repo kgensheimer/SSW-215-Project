@@ -25,7 +25,7 @@
 
   <body>
 
-    <!-- Navigation -->
+   <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">Test Resource</a>
@@ -56,13 +56,13 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/aboutstevens.jpg')">
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>About The Tool</h1>Here is what it does.
+              <h1>Submission Form</h1>
             </div>
           </div>
         </div>
@@ -73,16 +73,60 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>This tool is a SSW-215 Individual Software Engineering Course project by Mary McKeon, Kyle Gensheimer, and Sabrina Motiwala. We created this resource for students at stevens to have an open place to upload any test resources they need, and to give back to other students by posting their past tests or class resources</p>
-          <p>Each resource has a rating that can be completed by the users of the system. If the rating is below 3 stars for 5 reviews, it is removed from the service to keep the resources relevant.</p>
-          <p>You can report any problems with the systems or recommendations to the contact page!</p>
+          <p>Upload exams and quizzes here. Please make sure to omit any names, signatures, or any other identifying information from the file.</p>
+          <!-- Submission Form -->
+          <form name="sentMessage" id="contactForm" novalidate>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Class Name</label>
+                <input type="text" class="form-control" placeholder="Class Name (eg. SSW 215)" id="className" required data-validation-required-message="Please enter the class name.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Description</label>
+                <input type="text" class="form-control" placeholder="Description (eg. Exam 3)" id="description" required data-validation-required-message="Please enter a description.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Semester</label>
+                <input type="text" class="form-control" placeholder="Semester (eg. Spring 2018)" id="semster" required data-validation-required-message="Please enter the semester.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Notes</label>
+                <textarea rows="3" class="form-control" placeholder="Notes" id="message" required data-validation-required-message="Please enter additional notes."></textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <!-- File Submission Input -->
+            <div class="form-group">
+                <label for="formControlFile">Browse for File:</label>
+                <input type="file" class="form-control-file" id="formControlFile">
+              </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-
+    
+    
+    
+    
+    
     <hr>
 
-   <!-- Footer -->
+    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="row">
