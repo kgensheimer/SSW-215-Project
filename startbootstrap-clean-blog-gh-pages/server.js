@@ -4,7 +4,8 @@ var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 //var awsmod = require('./js/awsmodule.js');
-var nodeMailer = require('nodemailer');
+var nodeMailer = require('nodemailer');;
+var upload = require('./js/upload.js')
 
 // use bodyparser
 app.use(bodyParser.json());
@@ -43,6 +44,13 @@ app.post('/send-email', function (req, res) {
     });
 });
 
+
+app.post('/uploadfile', function(req, res) {
+    console.log(req.body);
+
+    upload.uploadFile(courseName, testName, profName, year, file)
+
+})
 
 var port = process.env.PORT || 3000;
 
