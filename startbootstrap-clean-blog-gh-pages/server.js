@@ -1,10 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var upload = require('express-fileupload')
 //const exphbs = require("express-handlebars");
 var app = express();
 var path = require('path');
 //var awsmod = require('./js/awsmodule.js');
 var nodeMailer = require('nodemailer');
+
+app.use(upload());
 
 // use bodyparser
 app.use(bodyParser.json());
@@ -16,6 +19,7 @@ app.use("/", express.static(path.join(__dirname + 'index')));
 // app.use("/students/css", express.static(path.join(__dirname + '/css')));
 // app.use("/game-data", express.static(path.join(__dirname + '/static/games/game-data')));
 
+// EMAILS
 app.post('/send-email', function (req, res) {
     console.log(req.body);
     console.log("here");
@@ -29,7 +33,7 @@ app.post('/send-email', function (req, res) {
     let mailOptions = {
         from: req.body.email, // sender address
         to: 'testresourcestevens@gmail.com', // list of receivers
-        subject: 'Mail from website form ' + req.body.firstname,// + " " + 
+        subject: 'Mail from website form ' + req.body.firstname,// + " " +
         //req.body.lastname, // Subject line
         text: "FROM " + req.body.email + ":: " + req.body.message // plain text body
     };
@@ -43,6 +47,32 @@ app.post('/send-email', function (req, res) {
     });
 });
 
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/submit.html");
+});
+app.post('/upload',function(req,res){
+  console.log(req.files);
+  if(req.files.upfile){
+    var file = req.files.upfile,
+      name = file.name,
+      type = file.mimetype;
+    var uploadpath = __dirname + '/uploads/' + name;
+    file.mv(uploadpath,function(err){
+      if(err){
+        console.log("File Upload Failed",name,err);
+        res.send("Error Occured!")
+      }
+      else {
+        console.log("File Uploaded",name);
+        res.send('Done! Uploading files')
+      }
+    });
+  }
+  else {
+    res.send("No File selected !");
+    res.end();
+  };
+});
 
 var port = process.env.PORT || 3000;
 
