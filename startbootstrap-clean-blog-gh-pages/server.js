@@ -47,11 +47,13 @@ app.post('/send-email', function (req, res) {
     });
 });
 
+//File Uploading
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/submit.html");
 });
 app.post('/upload',function(req,res){
-  console.log(req.files);
+  console.log(req.body);
+  console.log(req.file);
   if(req.files.upfile){
     var file = req.files.upfile,
       name = file.name,
@@ -64,17 +66,17 @@ app.post('/upload',function(req,res){
       }
       else {
         console.log("File Uploaded",name);
-        res.send('Done! Uploading files')
+        res.sendFile(path.join(__dirname + '/submit.html'));
       }
     });
   }
   else {
-    res.send("No File selected !");
+    res.send("No File selected!");
     res.end();
   };
 });
 
-var port = process.env.PORT || 3000;
+var port = 8000;
 
 app.listen(port, function(){
     console.log("Server is listening on port ..." + port);
