@@ -75,55 +75,64 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <p>Upload exams and quizzes here. Please make sure to omit any names, signatures, or any other identifying information from the file.</p>
           <!-- Submission Form -->
-          <form name="sentMessage" id="contactForm" novalidate>
+          <form class="fileupload" action="upload" method="post" enctype="multipart/form-data">
+
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Class Name</label>
-                <input type="text" class="form-control" placeholder="Class Name (eg. SSW 215)" id="className" required data-validation-required-message="Please enter the class name.">
+                <input type="text" class="form-control" placeholder="Class Name (eg. SSW 215)" name="class_name" required data-validation-required-message="Please enter the class name.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
+
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Description</label>
-                <input type="text" class="form-control" placeholder="Description (eg. Exam 3)" id="description" required data-validation-required-message="Please enter a description.">
+                <input type="text" class="form-control" placeholder="Description (eg. Exam 3)" name="description" required data-validation-required-message="Please enter a description.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
+
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Semester</label>
-                <input type="text" class="form-control" placeholder="Semester (eg. Spring 2018)" id="semster" required data-validation-required-message="Please enter the semester.">
+                <input type="text" class="form-control" placeholder="Semester (eg. Spring 2018)" name="semester" required data-validation-required-message="Please enter the semester.">
                 <p class="help-block text-danger"></p>
               </div>
             </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Professor</label>
+                <input type="text" class="form-control" placeholder="Professor Name" name="professor_name" required data-validation-required-message="Please enter the professor.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">
                 <label>Notes</label>
-                <textarea rows="3" class="form-control" placeholder="Notes" id="message" required data-validation-required-message="Please enter additional notes."></textarea>
+                <textarea rows="3" class="form-control" placeholder="Notes" name="notes" required data-validation-required-message="Please enter additional notes."></textarea>
                 <p class="help-block text-danger"></p>
               </div>
             </div>
             <br>
-            <!-- File Submission Input -->
-            <div class="form-group">
-                <label for="formControlFile">Browse for File:</label>
-                <input type="file" class="form-control-file" id="formControlFile">
-              </div>
-            <br>
-            <div id="success"></div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+            <!--File input -->
+            <div class="control-group">
+                <label>File: Size limited to 2.5MB, PDF's only.</label>
+                <br>
+                <input type="file" name="upfile" value="">
+                <br><br>
+                <input type="submit" class="btn btn-primary" />
             </div>
+
           </form>
+
+          </div>
         </div>
       </div>
     </div>
-    
-    
-    
-    
-    
+
     <hr>
 
     <!-- Footer -->
@@ -146,6 +155,8 @@
         </div>
       </div>
     </footer>
+
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
