@@ -1,12 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var upload = require('express-fileupload');
-//const exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
 var app = express();
 var path = require('path');
-//var awsmod = require('./js/awsmodule.js');
+var help = require('./js/getFiles');
 
-var nodeMailer = require('nodemailer');;
+var nodeMailer = require('nodemailer');
 
 var mysql = require('mysql');
 
@@ -17,17 +17,16 @@ app.use(bodyParser.urlencoded());
 
 app.use("/", express.static(__dirname));
 app.use("/", express.static(path.join(__dirname + 'index')));
-// app.use("/js", express.static(path.join(__dirname + '/js')));
-// app.use("/students/css", express.static(path.join(__dirname + '/css')));
-// app.use("/game-data", express.static(path.join(__dirname + '/static/games/game-data')));
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Create database connection
 var con = mysql.createConnection({
   host: "localhost",
   port: "3306",
-  user: "tester",
-  password: "tester!123",
-  database: "testbankdb",
+  user: "root",
+  database: "testdb",
 });
 
 // EMAILS
@@ -58,14 +57,60 @@ app.post('/send-email', function(req, res) {
   });
 });
 
+app.get('/post', function(req, res){
+
+    //make db call to get all info for this
+    // help.getAllFiles(function(err, results){
+    //     if(err){
+    //         res.render("resources", {
+    //             layout: 'main',
+    //             results: null
+    //         });
+    //     } else{
+    //          res.render("resources", {
+    //             layout: 'main',
+    //             results: results
+    //         });
+    //      }
+
+    // });
+
+    results = [
+        {
+            classname : "215",
+            description: "exam 1",
+            semester: "semester",
+            profName: "profName",
+            notes: "this is a note",
+            filename : "filename",
+            file : "hi"
+        },
+        {
+            classname : "215",
+            description: "exam 2",
+            semester: "2018",
+            profName: "profName",
+            notes: "this is a note",
+            filename : "filename",
+            file :"hi"
+        }
+       ];
+
+    res.render("resources", {
+        layout: 'main',
+        results: results
+    });
+
+   
+});
+
 //File Uploading
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/submit.html");
 });
 
 app.post('/upload', function(req, res) {
-  console.log(req.body.class_name);
-  console.log(req.files.upfile);
+  console.log(req.body);
   if (req.files.upfile) {
     var date = Date.now()
     var file = req.files.upfile;
@@ -79,7 +124,7 @@ app.post('/upload', function(req, res) {
 
     var uploadpath = __dirname + '/uploads/' + name;
     var values = [[class_name, description, semester, professor_name, notes, name, file]];
-    var sql = "INSERT INTO test_table (classname, description, semester, profname, notes, filename, file) VALUES ? ";
+    var sql = "INSERT INTO testtable (classname, description, semester, profname, notes, filename, file) VALUES ? ";
 
 
     if (type == 'application/pdf') {
@@ -102,9 +147,12 @@ app.post('/upload', function(req, res) {
   } else {
     res.send("No File selected!");
     res.end();
-  };
+  }
 });
 
+app.get('*', function(req, res) {
+    res.redirect("/");
+});
 
 
 var port = 8000;

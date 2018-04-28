@@ -1,0 +1,42 @@
+
+<!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview">
+              <h2 class="post-title">
+                Here are some posts from fellow students!
+              </h2>
+          </div>
+          <hr>
+
+          {{#each results}}
+          <div class="post-preview">
+            <a href={{this.file}}>
+              <h2 class="post-title">
+                {{this.classname}} {{this.description}}
+              </h2>
+            </a>
+            From {{this.profName}} during {{this.semester}}
+              
+            <p class="post-meta">
+              Notes: {{this.notes}}
+            </p>
+          {{else}}
+            <p class="post-preview">
+            There are no docments to view right now
+            </p>  
+          {{/each}}
+
+          </div>
+          <hr>
+          <!-- Pager -->
+          <div class="clearfix">
+            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <hr>

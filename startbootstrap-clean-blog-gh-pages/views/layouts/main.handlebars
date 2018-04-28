@@ -25,7 +25,7 @@
 
   <body>
 
-    <!-- Navigation -->
+   <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="index.html">Test Resource</a>
@@ -42,7 +42,7 @@
               <a class="nav-link" href="about.html">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/post">Resources</a>
+              <a class="nav-link" href="post.html">Resources</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="submit.html">Submit</a>
@@ -50,39 +50,43 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
+            <li>
+              <div class="search-container">
+                <form action="/action_page.php">
+                  <input type="text" placeholder="Search.." name="search">
+                  <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('img/aboutstevens.jpg')">
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="page-heading">
-              <h1>About The Tool</h1>Here is what it does.
+            <div class="post-heading">
+              <h1>Add and search for resources here!</h1>
+              <h2 class="subheading">Below click the form to add a new resource or search for older ones</h2>
+              <span class="meta">Posted by
+                <a href="#">Start Bootstrap</a>
+                on August 24, 2018</span>
             </div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <p>This tool is a SSW-215 Individual Software Engineering Course project by Mary McKeon, Kyle Gensheimer, and Sabrina Motiwala. We created this resource for students at stevens to have an open place to upload any test resources they need, and to give back to other students by posting their past tests or class resources</p>
-          <p>Each resource has a rating that can be completed by the users of the system. If the rating is below 3 stars for 5 reviews, it is removed from the service to keep the resources relevant.</p>
-          <p>You can report any problems with the systems or recommendations to the contact page!</p>
-        </div>
-      </div>
+    <div>
+      {{{body}}}
     </div>
 
-    <hr>
-
-   <!-- Footer -->
+    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="row">
@@ -97,7 +101,7 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
+            <p class="copyright text-muted">Copyright &copy; Test Resource 2018</p>
           </div>
         </div>
       </div>
