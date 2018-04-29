@@ -12,7 +12,7 @@ var db = connection.database;
 module.exports = {
 
 	getAllFiles : function(callback){
-		connection.query('SELECT * from recTable' , function(err, results, fields){
+		connection.query('SELECT * from theTable' , function(err, results, fields){
 			if(!err && results){
 				//there are tests, return the array
 				callback(null, results);

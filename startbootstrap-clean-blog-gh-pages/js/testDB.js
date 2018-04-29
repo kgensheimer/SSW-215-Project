@@ -39,7 +39,7 @@ connection.connect(function(err) {
 });
 
 /*USE THIS TO CREATE NEW TEST RESOURCE TABEL*/
-// connection.query('CREATE table recTable(className VARCHAR(40) NOT NULL, description VARCHAR(40) NOT NULL, semester VARCHAR(40) NOT NULL, profName VARCHAR(40) NOT NULL, notes VARCHAR(40) NOT NULL, filename  VARCHAR(40) NOT NULL)', function(err, results, fields){
+// connection.query('CREATE table theTable(className VARCHAR(40) NOT NULL, description VARCHAR(40) NOT NULL, semester VARCHAR(40) NOT NULL, profName VARCHAR(40) NOT NULL, notes VARCHAR(225) NOT NULL, filename  VARCHAR(100) NOT NULL)', function(err, results, fields){
 // 	if(err){
 // 		console.log(err);
 // 	} else {
@@ -47,20 +47,27 @@ connection.connect(function(err) {
 // 	}
 // });
 
-
+//change num of allowed chars
+connection.query('ALTER TABLE theTable MODIFY notes VARCHAR(225)', function(err, results, fields){
+ if(err){
+   console.log(err);
+ } else {
+   console.log("success!");
+ }
+});
 
 //listofStudents
 
 // var user = "marym"
 
 // //results is an array, so have to check size of array before looking at specific results
-connection.query('SELECT * from recTable', function(err, results, fields){
-	if(err){
-		console.log(err);
-	} else {
-		console.log(results);
-	}
-});
+// connection.query('SELECT * from theTable', function(err, results, fields){
+// 	if(err){
+// 		console.log(err);
+// 	} else {
+// 		console.log(results);
+// 	}
+// });
 
 // // var studentUser = "maeve";
 

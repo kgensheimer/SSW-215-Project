@@ -19,7 +19,9 @@ app.use(bodyParser.urlencoded());
 app.use("/", express.static(__dirname));
 app.use("/", express.static(path.join(__dirname + 'index')));
 
-app.use(upload());
+app.use(upload({
+    limits: { fileSize: 5242880 }
+}));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -118,7 +120,7 @@ app.post('/upload', function(req, res) {
   if (req.files.upfile) {
     var date = Date.now()
     var file = req.files.upfile;
-    var name = "/resource/" + date + file.name;
+    var name = "/resource/" + date + ".pdf";
     var type = file.mimetype;
     var class_name = req.body.class_name;
     var description = req.body.description;
@@ -128,7 +130,7 @@ app.post('/upload', function(req, res) {
 
     var uploadpath = __dirname + name;
     var values = [[class_name, description, semester, professor_name, notes, name]];
-    var sql = "INSERT INTO recTable (classname, description, semester, profname, notes, filename) VALUES ? ";
+    var sql = "INSERT INTO theTable (classname, description, semester, profname, notes, filename) VALUES ? ";
 
 
     if (type == 'application/pdf') {
