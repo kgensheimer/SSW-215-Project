@@ -5,6 +5,7 @@ const exphbs = require("express-handlebars");
 var app = express();
 var path = require('path');
 var help = require('./js/getFiles');
+var form = require('formidable');
 
 var nodeMailer = require('nodemailer');
 
@@ -17,6 +18,8 @@ app.use(bodyParser.urlencoded());
 
 app.use("/", express.static(__dirname));
 app.use("/", express.static(path.join(__dirname + 'index')));
+
+app.use(upload());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -59,47 +62,47 @@ app.post('/send-email', function(req, res) {
 
 app.get('/post', function(req, res){
 
-    //make db call to get all info for this
-    // help.getAllFiles(function(err, results){
-    //     if(err){
-    //         res.render("resources", {
-    //             layout: 'main',
-    //             results: null
-    //         });
-    //     } else{
-    //          res.render("resources", {
-    //             layout: 'main',
-    //             results: results
-    //         });
-    //      }
+   // make db call to get all info for this
+    help.getAllFiles(function(err, results){
+        if(err){
+            res.render("resources", {
+                layout: 'main',
+                results: null
+            });
+        } else{
+             res.render("resources", {
+                layout: 'main',
+                results: results
+            });
+         }
 
-    // });
-
-    results = [
-        {
-            classname : "215",
-            description: "exam 1",
-            semester: "semester",
-            profName: "profName",
-            notes: "this is a note",
-            filename : "filename",
-            file : "hi"
-        },
-        {
-            classname : "215",
-            description: "exam 2",
-            semester: "2018",
-            profName: "profName",
-            notes: "this is a note",
-            filename : "filename",
-            file :"hi"
-        }
-       ];
-
-    res.render("resources", {
-        layout: 'main',
-        results: results
     });
+
+    // results = [
+    //     {
+    //         classname : "215",
+    //         description: "exam 1",
+    //         semester: "semester",
+    //         profName: "profName",
+    //         notes: "this is a note",
+    //         filename : "filename",
+    //         file : "hi"
+    //     },
+    //     {
+    //         classname : "215",
+    //         description: "exam 2",
+    //         semester: "2018",
+    //         profName: "profName",
+    //         notes: "this is a note",
+    //         filename : "filename",
+    //         file :"hi"
+    //     }
+    //    ];
+
+    // res.render("resources", {
+    //     layout: 'main',
+    //     results: results
+    // });
 
    
 });
@@ -110,11 +113,12 @@ app.get("/", function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
-  console.log(req.body);
+
+  console.log("Body: " + JSON.stringify(req.body));
   if (req.files.upfile) {
     var date = Date.now()
     var file = req.files.upfile;
-    var name = date + file.name;
+    var name = "/resource/" + date + file.name;
     var type = file.mimetype;
     var class_name = req.body.class_name;
     var description = req.body.description;
@@ -122,9 +126,9 @@ app.post('/upload', function(req, res) {
     var professor_name = req.body.professor_name;
     var notes = req.body.notes;
 
-    var uploadpath = __dirname + '/uploads/' + name;
-    var values = [[class_name, description, semester, professor_name, notes, name, file]];
-    var sql = "INSERT INTO testtable (classname, description, semester, profname, notes, filename, file) VALUES ? ";
+    var uploadpath = __dirname + name;
+    var values = [[class_name, description, semester, professor_name, notes, name]];
+    var sql = "INSERT INTO recTable (classname, description, semester, profname, notes, filename) VALUES ? ";
 
 
     if (type == 'application/pdf') {
