@@ -56,13 +56,13 @@ connection.connect(function(err) {
 //  }
 // });
 
-connection.query('ALTER TABLE ratingTable ALTER COLUMN rating SET DEFAULT 0', function(err, results, fields){
- if(err){
-   console.log(err);
- } else {
-   console.log("success!");
- }
-});
+// connection.query('ALTER TABLE ratingTable ALTER COLUMN rating SET DEFAULT 0', function(err, results, fields){
+//  if(err){
+//    console.log(err);
+//  } else {
+//    console.log("success!");
+//  }
+// });
 
 // connection.query('ALTER TABLE ratingTable MODIFY COLUMN rating DOUBLE NOT NULL;', function(err, results, fields){
 //  if(err){
@@ -71,11 +71,14 @@ connection.query('ALTER TABLE ratingTable ALTER COLUMN rating SET DEFAULT 0', fu
 //    console.log("success!");
 //  }
 // });
+connection.query('DELETE FROM ratingTable', function(err, results, fields){
+ if(err){
+   console.log(err);
+ } else {
+   console.log("success!");
+ }
+});
 
-
-//listofStudents
-
-// var user = "marym"
 
 // //results is an array, so have to check size of array before looking at specific results
 connection.query('SELECT * from ratingTable', function(err, results, fields){

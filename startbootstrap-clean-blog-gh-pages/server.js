@@ -84,7 +84,7 @@ app.get('/post', function(req, res){
 
 //File Uploading
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/submit.html");
+  res.redirect("/index");
 });
 
 app.post('/rate', function(req, res){
@@ -107,6 +107,23 @@ app.post('/rate', function(req, res){
          res.redirect("/post");
     });
 
+});
+
+app.get("/index", function(req, res) {
+    help.getTop10Posts(function(err, results){
+        if(err){
+            res.render("resources", {
+                layout: 'index',
+                results: null
+            });
+        } else{
+             res.render("resources", {
+                layout: 'index',
+                results: results
+            });
+         }
+
+    });
 });
 
 app.post('/upload', function(req, res) {

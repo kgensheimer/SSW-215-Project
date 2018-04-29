@@ -63,5 +63,16 @@ module.exports = {
 				callback(null, results);
 			}
 		});
+	},
+	getTop10Posts : function(callback){
+		connection.query('SELECT * FROM ratingTable ORDER BY rating DESC LIMIT 10' , function(err, results, fields){
+			if(!err && results){
+				//there are tests, return the array
+				callback(null, results);
+			}else{
+				console.log("Error with data base!: " + err);
+				callback("Database error!", results);
+			}
+		});	
 	}
 };
