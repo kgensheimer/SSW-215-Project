@@ -39,7 +39,7 @@ connection.connect(function(err) {
 });
 
 /*USE THIS TO CREATE NEW TEST RESOURCE TABEL*/
-// connection.query('CREATE table theTable(className VARCHAR(40) NOT NULL, description VARCHAR(40) NOT NULL, semester VARCHAR(40) NOT NULL, profName VARCHAR(40) NOT NULL, notes VARCHAR(225) NOT NULL, filename  VARCHAR(100) NOT NULL)', function(err, results, fields){
+// connection.query('CREATE table ratingTable(className VARCHAR(40) NOT NULL, description VARCHAR(40) NOT NULL, semester VARCHAR(40) NOT NULL, profName VARCHAR(40) NOT NULL, notes VARCHAR(225) NOT NULL, filename  VARCHAR(100) NOT NULL, rating DOUBLE NOT NULL, numRating INT NOT NULL)', function(err, results, fields){
 // 	if(err){
 // 		console.log(err);
 // 	} else {
@@ -48,7 +48,15 @@ connection.connect(function(err) {
 // });
 
 //change num of allowed chars
-connection.query('ALTER TABLE theTable MODIFY notes VARCHAR(225)', function(err, results, fields){
+// connection.query('ALTER TABLE theTable MODIFY notes VARCHAR(225)', function(err, results, fields){
+//  if(err){
+//    console.log(err);
+//  } else {
+//    console.log("success!");
+//  }
+// });
+
+connection.query('ALTER TABLE ratingTable ALTER COLUMN rating SET DEFAULT 0', function(err, results, fields){
  if(err){
    console.log(err);
  } else {
@@ -56,18 +64,27 @@ connection.query('ALTER TABLE theTable MODIFY notes VARCHAR(225)', function(err,
  }
 });
 
+// connection.query('ALTER TABLE ratingTable MODIFY COLUMN rating DOUBLE NOT NULL;', function(err, results, fields){
+//  if(err){
+//    console.log(err);
+//  } else {
+//    console.log("success!");
+//  }
+// });
+
+
 //listofStudents
 
 // var user = "marym"
 
 // //results is an array, so have to check size of array before looking at specific results
-// connection.query('SELECT * from theTable', function(err, results, fields){
-// 	if(err){
-// 		console.log(err);
-// 	} else {
-// 		console.log(results);
-// 	}
-// });
+connection.query('SELECT * from ratingTable', function(err, results, fields){
+	if(err){
+		console.log(err);
+	} else {
+		console.log(results);
+	}
+});
 
 // // var studentUser = "maeve";
 

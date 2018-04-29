@@ -76,6 +76,8 @@
           <p>Upload exams and quizzes here. Please make sure to omit any names, signatures, or any other identifying information from the file.</p>
           <!-- Submission Form -->
           <form class="fileupload" action="/upload" method="POST" enctype="multipart/form-data">
+            <input type = 'hidden' name = "rating" value = 0>
+            <input type = 'hidden' name = "numRating" value = 0>
 
             <div class="control-group">
               <div class="form-group floating-label-form-group controls">

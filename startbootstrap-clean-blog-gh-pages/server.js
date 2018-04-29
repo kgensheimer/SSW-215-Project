@@ -79,39 +79,34 @@ app.get('/post', function(req, res){
          }
 
     });
-
-    // results = [
-    //     {
-    //         classname : "215",
-    //         description: "exam 1",
-    //         semester: "semester",
-    //         profName: "profName",
-    //         notes: "this is a note",
-    //         filename : "filename",
-    //         file : "hi"
-    //     },
-    //     {
-    //         classname : "215",
-    //         description: "exam 2",
-    //         semester: "2018",
-    //         profName: "profName",
-    //         notes: "this is a note",
-    //         filename : "filename",
-    //         file :"hi"
-    //     }
-    //    ];
-
-    // res.render("resources", {
-    //     layout: 'main',
-    //     results: results
-    // });
-
    
 });
 
 //File Uploading
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/submit.html");
+});
+
+app.post('/rate', function(req, res){
+    console.log(req.body);
+
+     help.sendRating(req.body, function(err, results){
+        if(err){
+            console.log("err with sending a rating: " + err);
+        } else{
+            console.log("success sending rating, now posting");
+            help.postNewRating(results, function(err, results){
+                if(err) { 
+                    console.log("Error posting rating: " + err)
+                } else{
+                    console.log("success posting rating");
+                }
+            })
+            
+         }
+         res.redirect("/post");
+    });
+
 });
 
 app.post('/upload', function(req, res) {
@@ -130,7 +125,7 @@ app.post('/upload', function(req, res) {
 
     var uploadpath = __dirname + name;
     var values = [[class_name, description, semester, professor_name, notes, name]];
-    var sql = "INSERT INTO theTable (classname, description, semester, profname, notes, filename) VALUES ? ";
+    var sql = "INSERT INTO ratingTable (classname, description, semester, profname, notes, filename) VALUES ? ";
 
 
     if (type == 'application/pdf') {

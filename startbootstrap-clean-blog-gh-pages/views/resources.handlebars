@@ -18,10 +18,62 @@
               </h2>
             </a>
             From {{this.profName}} during {{this.semester}}
+            <br>
+            Rating: {{this.rating}}
+            <br>
+            Number of Ratings: {{this.numRating}}
               
             <p class="post-meta">
               Notes: {{this.notes}}
             </p>
+            Rate this form:  
+            <form method = "POST" action="/rate">
+              <input type = 'hidden' name = "filename" value = "{{this.filename}}">
+              <input type = 'hidden' name = "rate" value = "1">
+              <input type = 'image' name = "submit" alt = "Submit" src="/img/star.png" height = "20px" width = "20px">
+            </form>
+            <form method = "POST" action="/rate">
+              <input type = 'hidden' name = "filename" value = "{{this.filename}}">
+              <input type = 'hidden' name = "rate" value = "2">
+              <input type = 'image' name = "submit" alt = "Submit" src="/img/star.png" height = "20px" width = "20px">
+            </form>
+            <form method = "POST" action="/rate">
+              <input type = 'hidden' name = "filename" value = "{{this.filename}}">
+              <input type = 'hidden' name = "rate" value = "3">
+              <input type = 'image' name = "submit" alt = "Submit" src="/img/star.png" height = "20px" width = "20px">
+            </form>
+            <form method = "POST" action="/rate">
+              <input type = 'hidden' name = "filename" value = "{{this.filename}}">
+              <input type = 'hidden' name = "rate" value = "4">
+              <input type = 'image' name = "submit" alt = "Submit" src="/img/star.png" height = "20px" width = "20px">
+            </form>
+            <form method = "POST" action="/rate">
+              <input type = 'hidden' name = "filename" value = "{{this.filename}}">
+              <input type = 'hidden' name = "rate" value = "5">
+              <input type = 'image' name = "submit" alt = "Submit" src="/img/star.png" height = "20px" width = "20px">
+            </form>
+
+            <!--<form method = "POST" action="/rate">
+              <input type = 'hidden' name = "filename" value = "{{this.filename}}">
+              <input type = 'hidden' name = "like" value = "1">
+              <div class="rating">
+               Thumbs up 
+              <div class="like grow">
+                <button type='submit' value = "0" class="fa fa-thumbs-up fa-3x like" aria-hidden="true"></button>
+              </div>
+            </form>
+            <form method = "POST" action="/rate">
+              <input type = 'hidden' name = "filename" value = "{{this.filename}}">
+              <input type = 'hidden' name = "like" value = "0">
+               Thumbs down 
+              <div class="dislike grow">
+                <button type='submit' value = "1" class="fa fa-thumbs-down fa-3x like" aria-hidden="true"></button>
+              </div>
+            </form> -->
+          </div>
+          <br>
+          <hr>
+
           {{else}}
             <p class="post-preview">
             There are no docments to view right now

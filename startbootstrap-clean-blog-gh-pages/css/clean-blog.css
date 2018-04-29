@@ -400,6 +400,10 @@ form .form-group:first-child .floating-label-form-group {
   border-top: 1px solid #dee2e6;
 }
 
+form {
+  display: inline-block;
+}
+
 footer {
   padding: 50px 0 65px;
 }
@@ -439,4 +443,29 @@ footer .copyright {
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px;
+}
+
+.rating {
+  display: inline-block;
+  width: 100%;
+  margin-top: 5px;
+
+  text-align: left;
+}
+
+.like,
+.dislike {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #2EBDD1;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #2EBDD1;
 }
