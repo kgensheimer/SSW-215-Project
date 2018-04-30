@@ -5,7 +5,6 @@ const exphbs = require("express-handlebars");
 var app = express();
 var path = require('path');
 var help = require('./js/getFiles');
-var form = require('formidable');
 
 var nodeMailer = require('nodemailer');
 

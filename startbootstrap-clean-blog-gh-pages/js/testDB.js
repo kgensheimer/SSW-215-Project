@@ -1,25 +1,7 @@
 var mysql      = require('mysql');
-var AWS = require('aws-sdk');
-//var jwt = require('./generateJWT.js');
 
-
-
-// jwt.generateJWT({
-// 					"username": "Booops", 
-// 					"studentID": "bap",
-// 					"teacherID": "wapa",
-// 					"name": "Fack!"
-				// });
-// var awsmod = require('./awsmodule.js');
-
-// var connection = mysql.createConnection({
-//   host     : 'aap3l7gbraqrps.cwlgyiktk09c.us-east-1.rds.amazonaws.com',
-//   port     :'3306',
-//   user     : 'ngattuso',
-//   password : 'marynick123',
-//   database : 'ebdb'
-// });
  
+ //USE THIS CONNECTION, WHEN CREATING DB ON MYSQL, KNOW USER AND DB NAME. MAY HAVE TO ADD A PASSWORD
 var connection = mysql.createConnection({
   host     : 'localhost',
   port     :'3306',
@@ -38,40 +20,17 @@ connection.connect(function(err) {
   console.log('connected as id ' + connection.threadId);
 });
 
-/*USE THIS TO CREATE NEW TEST RESOURCE TABEL*/
-// connection.query('CREATE table ratingTable(className VARCHAR(40) NOT NULL, description VARCHAR(40) NOT NULL, semester VARCHAR(40) NOT NULL, profName VARCHAR(40) NOT NULL, notes VARCHAR(225) NOT NULL, filename  VARCHAR(100) NOT NULL, rating DOUBLE NOT NULL, numRating INT NOT NULL)', function(err, results, fields){
-// 	if(err){
-// 		console.log(err);
-// 	} else {
-// 		console.log("success!");
-// 	}
-// });
+/*STEP 1: USE THIS TO CREATE NEW TEST RESOURCE TABEL*/
+connection.query('CREATE table ratingTable(className VARCHAR(40) NOT NULL, description VARCHAR(40) NOT NULL, semester VARCHAR(40) NOT NULL, profName VARCHAR(40) NOT NULL, notes VARCHAR(225) NOT NULL, filename  VARCHAR(100) NOT NULL, rating DOUBLE NOT NULL, numRating INT NOT NULL)', function(err, results, fields){
+	if(err){
+		console.log(err);
+	} else {
+		console.log("success!");
+	}
+});
 
-//change num of allowed chars
-// connection.query('ALTER TABLE theTable MODIFY notes VARCHAR(225)', function(err, results, fields){
-//  if(err){
-//    console.log(err);
-//  } else {
-//    console.log("success!");
-//  }
-// });
 
-// connection.query('ALTER TABLE ratingTable ALTER COLUMN rating SET DEFAULT 0', function(err, results, fields){
-//  if(err){
-//    console.log(err);
-//  } else {
-//    console.log("success!");
-//  }
-// });
-
-// connection.query('ALTER TABLE ratingTable MODIFY COLUMN rating DOUBLE NOT NULL;', function(err, results, fields){
-//  if(err){
-//    console.log(err);
-//  } else {
-//    console.log("success!");
-//  }
-// });
-connection.query('DELETE FROM ratingTable', function(err, results, fields){
+connection.query('ALTER TABLE ratingTable ALTER COLUMN rating SET DEFAULT 0', function(err, results, fields){
  if(err){
    console.log(err);
  } else {
@@ -79,71 +38,30 @@ connection.query('DELETE FROM ratingTable', function(err, results, fields){
  }
 });
 
+connection.query('ALTER TABLE ratingTable MODIFY COLUMN rating DOUBLE NOT NULL;', function(err, results, fields){
+ if(err){
+   console.log(err);
+ } else {
+   console.log("success!");
+ }
 
-// //results is an array, so have to check size of array before looking at specific results
-connection.query('SELECT * from ratingTable', function(err, results, fields){
-	if(err){
-		console.log(err);
-	} else {
-		console.log(results);
-	}
-});
 
-// // var studentUser = "maeve";
-
-// // console.log(studentUser);
-// // connection.query('INSERT into usersdb(teacher_id, userName, password, isTeacher) VALUES(0, ?, "mary123", false)', [studentUser], function(err, results, fields){
-// // 	if(err){
-// // 		console.log(err);
-// // 	} else {
-// // 		console.log(results);
-// // 	}
-// // });
-// var db = "usersdb";
-
-// connection.query('SELECT * from '+ db, function(err, results, fields){
-// 	if(err){
-// 		console.log("Error in getting user from database" + err);
-// 	}else {
-// 		if(results.length != 0){
-// 			console.log("students exist");
-// 		} else {
-// 			console.log("0 students");
-// 		}
-// 		console.dir(results);
-
-// 	}
+//THIS CAN BE USED TO DELETE DATA FROM TABLE IF NEEDED
+// connection.query('DELETE FROM ratingTable', function(err, results, fields){
+//  if(err){
+//    console.log(err);
+//  } else {
+//    console.log("success!");
+//  }
 // });
 
-// // connection.query('TRUNCATE '+ db, function(err, results, fields){
-// // 	if(err){
-// // 		console.log("Error in getting user from database" + err);
-// // 	}else {
-// // 		if(results.length != 0){
-// // 			console.log("students exist");
-// // 		} else {
-// 			console.log("0 students");
-// 		}
-// 		console.dir(results);
 
-// 	}
-// });
-
-// connection.query('DESCRIBE usersdb', function(err, results, fields){
+// THIS QUERY CAN VIEW ALL THE DATA FROM RATING
+// connection.query('SELECT * from ratingTable', function(err, results, fields){
 // 	if(err){
 // 		console.log(err);
 // 	} else {
-// 		console.log(fields);
+// 		console.log(results);
 // 	}
 // });
 
-// connection.end(function(err){
-// 	if(err){
-// 		console.log("error: " + err);
-// 	}
-// 	else{
-// 		console.log("connection ended");
-// 	}
-// });
-
-//var test = awsmod.verifyLogin("mary", "mary123");
